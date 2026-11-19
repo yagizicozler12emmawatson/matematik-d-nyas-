@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matematik Dünyası | Eğlenerek Öğren</title>
+<style>
+:root{--ink:#172554;--muted:#64748b;--blue:#4f46e5;--pink:#ec4899;--yellow:#fbbf24;--mint:#34d399;--bg:#f5f7ff}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:linear-gradient(120deg,#4338ca,#7c3aed 55%,#db2777);color:white;padding:22px max(5vw,20px) 52px}
+nav{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;max-width:1100px;margin:auto}
+.logo{font-size:1.3rem;font-weight:900;letter-spacing:.2px}.logo span{color:#fde68a}
+nav a{color:white;text-decoration:none;margin-left:17px;font-weight:650;font-size:.94rem}
+.hero{max-width:1100px;margin:48px auto 0;display:grid;grid-template-columns:1.4fr .8fr;gap:25px;align-items:center}
+.hero h1{font-size:clamp(2.3rem,6vw,4.2rem);line-height:1.04;margin:0 0 15px}.hero p{font-size:1.08rem;max-width:570px;color:#ede9fe}
+.hero-art{background:#ffffff20;border:1px solid #ffffff50;border-radius:28px;padding:25px;text-align:center;font-size:5rem;box-shadow:0 15px 40px #24135a33}
+.btn{display:inline-block;border:0;border-radius:13px;padding:12px 18px;background:var(--yellow);color:#422006;font-weight:800;cursor:pointer;text-decoration:none}
+main{max-width:1100px;margin:-20px auto 50px;padding:0 20px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.stat,.panel,.topic,.tool{background:white;border-radius:20px;padding:20px;box-shadow:0 8px 28px #1e2b5510}
+.stat strong{display:block;font-size:1.65rem}.stat span{color:var(--muted);font-size:.9rem}
+section{margin-top:42px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+h2{margin:0;font-size:1.7rem}.sub{color:var(--muted);margin:5px 0 0}
+.topics{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.topic{border-top:6px solid var(--accent);transition:.2s}.topic:hover{transform:translateY(-4px)}
+.emoji{font-size:2rem}.topic h3{margin:9px 0 5px}.topic p{color:var(--muted);font-size:.94rem;min-height:44px}
+.small-btn{border:0;border-radius:10px;background:#eef2ff;color:#3730a3;padding:9px 13px;font-weight:750;cursor:pointer}
+.tools{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.calc-display{width:100%;padding:13px;border:2px solid #e0e7ff;border-radius:12px;font-size:1.35rem;text-align:right;margin:12px 0}
+.keys{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.keys button{padding:13px;border:0;border-radius:10px;background:#eef2ff;font-weight:800;font-size:1rem;cursor:pointer}.keys button.op{background:#ede9fe;color:#5b21b6}
+.quiz-question{font-size:1.15rem;font-weight:800;margin:15px 0}.answers{display:grid;grid-template-columns:1fr 1fr;gap:10px}.answers button{padding:12px;border:2px solid #e0e7ff;background:white;border-radius:12px;cursor:pointer;font-weight:700}.answers button:hover{border-color:var(--blue);background:#eef2ff}
+.feedback{font-weight:750;min-height:28px;margin-top:12px}.progress{height:10px;background:#e2e8f0;border-radius:20px;overflow:hidden}.progress div{height:100%;width:0;background:linear-gradient(90deg,#4f46e5,#ec4899);transition:.3s}
+footer{text-align:center;padding:28px;color:#64748b}
+.modal{position:fixed;inset:0;background:#0f172a99;display:none;align-items:center;justify-content:center;padding:20px}.modal.open{display:flex}.modal-box{max-width:560px;width:100%;background:white;border-radius:22px;padding:25px;max-height:85vh;overflow:auto}.modal-box h2{margin-bottom:12px}.close{float:right;border:0;background:#f1f5f9;border-radius:10px;padding:8px 12px;cursor:pointer}
+@media(max-width:760px){.hero{grid-template-columns:1fr;margin-top:35px}.hero-art{font-size:3.5rem}.topics{grid-template-columns:1fr 1fr}.tools{grid-template-columns:1fr}}
+@media(max-width:480px){.topics{grid-template-columns:1fr}.stats{gap:8px}.stat{padding:14px}.stat strong{font-size:1.3rem}nav a{margin-left:8px}}
+</style>
+</head>
+<body>
+<header>
+<nav><div class="logo">📚 Matematik <span>Dünyası</span></div><div><a href="#konular">Konular</a><a href="#test">Test</a><a href="#araclar">Araçlar</a></div></nav>
+<div class="hero">
+<div><h1>Matematiği keşfet,<br>eğlenerek öğren! 🎯</h1><p>9. sınıf matematik konularını öğren, mini testleri çöz ve kendi ilerlemeni takip et. Matematik düşündüğünden daha eğlenceli olabilir!</p><a class="btn" href="#konular">Hemen keşfet ↓</a></div>
+<div class="hero-art">📐➗✨<div style="font-size:1rem;font-weight:800;margin-top:12px">Her gün biraz daha ilerle!</div></div>
+</div>
+</header>
+<main>
+<div class="stats">
+<div class="stat"><strong id="score">0</strong><span>Toplam puanın ⭐</span></div>
+<div class="stat"><strong id="solved">0</strong><span>Çözülen soru 🧠</span></div>
+<div class="stat"><strong id="level">Başlangıç</strong><span>Seviyen 🚀</span></div>
+</div>
+<section id="konular">
+<div class="section-head"><div><h2>📘 Konu köşesi</h2><p class="sub">Öğrenmek istediğin konuyu seç.</p></div></div>
+<div class="topics">
+<article class="topic" style="--accent:#4f46e5"><div class="emoji">🔢</div><h3>Sayı Kümeleri</h3><p>Doğal, tam, rasyonel ve gerçek sayıları tanı.</p><button class="small-btn" onclick="showTopic('Sayı Kümeleri', 'Doğal sayılar (ℕ): 0, 1, 2, 3… Tam sayılar (ℤ): …−2, −1, 0, 1, 2… Rasyonel sayılar (ℚ): a/b biçiminde yazılabilen sayılar. İrrasyonel sayılar: √2 ve π gibi kesir biçiminde yazılamayan sayılar. Gerçek sayılar (ℝ), rasyonel ve irrasyonel sayıların tamamıdır.')">Konuyu öğren</button></article>
+<article class="topic" style="--accent:#ec4899"><div class="emoji">🧩</div><h3>Kümeler</h3><p>Küme, eleman, birleşim ve kesişim işlemleri.</p><button class="small-btn" onclick="showTopic('Kümeler', 'Küme, iyi tanımlanmış nesneler topluluğudur. A ∪ B birleşim: iki kümenin tüm elemanları. A ∩ B kesişim: ortak elemanlar. Örnek: A={1,2,3}, B={3,4}. A∪B={1,2,3,4}; A∩B={3}.')">Konuyu öğren</button></article>
+<article class="topic" style="--accent:#f59e0b"><div class="emoji">⚡</div><h3>Üslü İfadeler</h3><p>Üs kurallarını örneklerle keşfet.</p><button class="small-btn" onclick="showTopic('Üslü İfadeler', 'aⁿ, a sayısının kendisiyle n kez çarpılmasıdır. Aynı tabanlı çarpma: aᵐ·aⁿ=aᵐ⁺ⁿ. Bölme: aᵐ/aⁿ=aᵐ⁻ⁿ (a≠0). Sıfırıncı kuvvet: a⁰=1 (a≠0). Negatif üs: a⁻ⁿ=1/aⁿ.')">Konuyu öğren</button></article>
+<article class="topic" style="--accent:#10b981"><div class="emoji">🌱</div><h3>Köklü İfadeler</h3><p>Karekök ve kök dışına çıkarma.</p><button class="small-btn" onclick="showTopic('Köklü İfadeler', '√a, karesi a olan negatif olmayan sayıdır. Örnek: √49=7. Çarpma: √a·√b=√(ab) (uygun a,b≥0). Tam kare çarpanları ayır: √48=√(16·3)=4√3.')">Konuyu öğren</button></article>
+<article class="topic" style="--accent:#06b6d4"><div class="emoji">📏</div><h3>Aralıklar</h3><p>Sayı doğrusunda açık ve kapalı aralıklar.</p><button class="small-btn" onclick="showTopic('Aralıklar', '[2,5] aralığı 2 ve 5 dahil tüm sayıları içerir. (2,5) uçları içermez. [2,5) 2’yi içerir, 5’i içermez. Sonsuzlukla yazılan aralıkların sonsuz tarafı daima açık parantezle gösterilir.')">Konuyu öğren</button></article>
+<article class="topic" style="--accent:#8b5cf6"><div class="emoji">🧠</div><h3>İşlem Özellikleri</h3><p>Değişme, birleşme, dağılma ve etkisiz eleman.</p><button class="small-btn" onclick="showTopic('İşlem Özellikleri', 'Değişme: a+b=b+a. Birleşme: (a+b)+c=a+(b+c). Dağılma: a(b+c)=ab+ac. Toplamada etkisiz eleman 0’dır: a+0=a. Çarpmada etkisiz eleman 1’dir: a·1=a. Çarpmada yutan eleman 0’dır: a·0=0.')">Konuyu öğren</button></article>
+</div>
+</section>
+<section id="test">
+<div class="section-head"><div><h2>🎮 Mini matematik testi</h2><p class="sub">Her doğru cevap 10 puan kazandırır.</p></div><span id="qcount">Soru 1 / 5</span></div>
+<div class="panel">
+<div class="progress"><div id="bar"></div></div>
+<div class="quiz-question" id="question">√49 işleminin sonucu kaçtır?</div>
+<div class="answers" id="answers"></div>
+<div class="feedback" id="feedback" aria-live="polite"></div>
+<button class="btn" id="next" style="display:none" onclick="nextQuestion()">Sonraki soru →</button>
+</div>
+</section>
+<section id="araclar">
+<div class="section-head"><div><h2>🛠️ Matematik araçları</h2><p class="sub">Hesap makinesini kullan veya kendini dene.</p></div></div>
+<div class="tools">
+<div class="tool"><h3>🧮 Hesap makinesi</h3><input id="display" class="calc-display" value="0" readonly aria-label="Hesap makinesi ekranı"><div class="keys">
+<button onclick="press('7')">7</button><button onclick="press('8')">8</button><button onclick="press('9')">9</button><button class="op" onclick="press('/')">÷</button>
+<button onclick="press('4')">4</button><button onclick="press('5')">5</button><button onclick="press('6')">6</button><button class="op" onclick="press('*')">×</button>
+<button onclick="press('1')">1</button><button onclick="press('2')">2</button><button onclick="press('3')">3</button><button class="op" onclick="press('-')">−</button>
+<button onclick="press('0')">0</button><button onclick="press('.')">.</button><button class="op" onclick="calculate()">=</button><button class="op" onclick="press('+')">+</button>
+<button onclick="clearCalc()" style="grid-column:span 4;background:#ffe4e6;color:#9f1239">Temizle</button></div></div>
+<div class="tool"><h3>💡 Günün matematik bilgisi</h3><p style="font-size:1.05rem;line-height:1.7">Bir sayının 0. kuvveti, sayı sıfırdan farklıysa daima 1'dir.</p><p style="background:#fef3c7;padding:12px;border-radius:12px"><b>Örnek:</b> 8⁰ = 1</p><p class="sub">Matematikte küçük kurallar büyük kolaylıklar sağlar!</p></div>
+</div>
+</section>
+</main>
+<footer>📚 Matematik Dünyası · Öğren, dene, geliş!<br><small>Bu site bir öğrenci projesi olarak hazırlanmıştır.</small></footer>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-box"><button class="close" onclick="closeTopic()">Kapat ✕</button><h2 id="modalTitle"></h2><p id="modalText" style="line-height:1.8;white-space:pre-line"></p></div></div>
+<script>
+let score=0, solved=0, current=0, answered=false;
+const questions=[
+{q:"√49 işleminin sonucu kaçtır?",a:["6","7","8","9"],c:1,e:"Çünkü 7 × 7 = 49."},
+{q:"A={1,2,3}, B={3,4}. A ∩ B nedir?",a:["{1,2,3,4}","{1,2}","{3}","{4}"],c:2,e:"Kesişim ortak elemanları verir. Ortak eleman 3'tür."},
+{q:"2³ × 2² işleminin sonucu kaçtır?",a:["2⁵","2⁶","2¹","2"],c:0,e:"Aynı tabanlı sayılar çarpılırken üsler toplanır: 3+2=5."},
+{q:"Aşağıdakilerden hangisi irrasyonel sayıdır?",a:["1/2","0,25","√2","−3"],c:2,e:"√2 iki tam sayının oranı olarak yazılamaz."},
+{q:"Çarpmada etkisiz eleman hangisidir?",a:["0","1","−1","10"],c:1,e:"Bir sayıyı 1 ile çarpmak sayıyı değiştirmez."}
+];
+function renderQuestion(){answered=false;let q=questions[current];document.getElementById('qcount').textContent=`Soru ${current+1} / ${questions.length}`;document.getElementById('question').textContent=q.q;document.getElementById('bar').style.width=(current/questions.length*100)+'%';document.getElementById('feedback').textContent='';document.getElementById('next').style.display='none';document.getElementById('answers').innerHTML='';q.a.forEach((a,i)=>{let b=document.createElement('button');b.textContent=a;b.onclick=()=>answer(i);document.getElementById('answers').appendChild(b)})}
+function answer(i){if(answered)return;answered=true;solved++;let q=questions[current];let buttons=document.querySelectorAll('#answers button');buttons.forEach((b,j)=>{b.disabled=true;if(j===q.c)b.style.borderColor='#10b981';if(j===i&&i!==q.c)b.style.borderColor='#ef4444'});let f=document.getElementById('feedback');if(i===q.c){score+=10;f.textContent='🎉 Doğru! +10 puan. '+q.e;f.style.color='#047857'}else{f.textContent='🙂 Bu kez olmadı. '+q.e;f.style.color='#b91c1c'}updateStats();document.getElementById('next').style.display='inline-block';document.getElementById('next').textContent=current===questions.length-1?'Testi bitir ✓':'Sonraki soru →'}
+function nextQuestion(){if(current<questions.length-1){current++;renderQuestion()}else{document.getElementById('question').textContent=`Test tamamlandı! ${score} / 50 puan kazandın. 🎊`;document.getElementById('answers').innerHTML='<button onclick="restartQuiz()" style="grid-column:1/-1">Tekrar çöz ↻</button>';document.getElementById('feedback').textContent='Her deneme seni geliştirir!';document.getElementById('next').style.display='none';document.getElementById('bar').style.width='100%'}}
+function restartQuiz(){current=0;renderQuestion()}
+function updateStats(){document.getElementById('score').textContent=score;document.getElementById('solved').textContent=solved;document.getElementById('level').textContent=score>=40?'Usta':score>=20?'Gelişiyor':'Başlangıç'}
+function showTopic(t,x){document.getElementById('modalTitle').textContent=t;document.getElementById('modalText').textContent=x;document.getElementById('modal').classList.add('open')}
+function closeTopic(){document.getElementById('modal').classList.remove('open')}
+function press(v){let d=document.getElementById('display');if(d.value==='0'||d.value==='Hata')d.value=v;else d.value+=v}
+function clearCalc(){document.getElementById('display').value='0'}
+function calculate(){let d=document.getElementById('display');try{if(!/^[0-9+\-*/.() ]+$/.test(d.value))throw Error();let result=Function('"use strict";return ('+d.value+')')();d.value=Number.isFinite(result)?String(result):'Hata'}catch{d.value='Hata'}}
+renderQuestion();
+</script>
+</body>
+</html>
